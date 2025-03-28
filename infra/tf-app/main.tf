@@ -35,7 +35,7 @@ resource "azurerm_storage_container" "app_container" {
 # Use the remote state output in your resources
 resource "azurerm_storage_account" "remote_storage" {
   name                     = data.terraform_remote_state.backend.outputs.storage_account_name
-  resource_group_name      = "some-resource-group"  # Replace with your actual resource group
+  resource_group_name      = "some-resource-group" # Replace with your actual resource group
   location                 = "East US"
   account_tier             = "Standard"
   account_replication_type = "LRS"
