@@ -1,0 +1,16 @@
+# Ignore Terraform directories and state files
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# Ignore Terraform plan files
+*.tfplan
+
+# Ignore Node.js dependencies (if applicable)
+node_modules/
+
+# Ignore logs and system files
+*.log
+.DS_Store
+Thumbs.db
