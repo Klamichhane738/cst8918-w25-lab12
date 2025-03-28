@@ -31,12 +31,3 @@ resource "azurerm_storage_container" "app_container" {
   storage_account_name  = azurerm_storage_account.app_storage.name
   container_access_type = "private"
 }
-
-# Output the details from tf-backend (the storage account from the backend)
-output "backend_storage_account_name" {
-  value = data.terraform_remote_state.backend.outputs.storage_account_name
-}
-
-output "backend_container_name" {
-  value = data.terraform_remote_state.backend.outputs.container_name
-}
