@@ -5,7 +5,7 @@ output "storage_account_name" {
 
 output "container_name" {
   value       = azurerm_storage_container.app_container.name
-  description = "The name of the storage container."
+  description = "The name of the storage containers."
 }
 
 output "arm_access_key" {
