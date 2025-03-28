@@ -21,16 +21,5 @@ resource "azurerm_storage_container" "app_container" {
   container_access_type = "private"
 }
 
-# Fetch remote state data
-data "terraform_remote_state" "backend" {
-  backend = "azurerm"
 
-  config = {
-    resource_group_name  = "lami0053-githubactions-rg"
-    storage_account_name = "lami0053githubactions"
-    container_name       = "tfstate"
-    key                  = "prod.app.tfstate"
-    use_oidc             = true
-  }
-}
 
