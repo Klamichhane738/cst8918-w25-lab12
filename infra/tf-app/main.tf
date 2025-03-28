@@ -18,11 +18,11 @@ resource "azurerm_resource_group" "app_rg" {
 # Declare the storage account in tf-app (if necessary)
 resource "azurerm_storage_account" "app_storage" {
   name                     = "lami0053appstorage"
-  resource_group_name       = azurerm_resource_group.app_rg.name
+  resource_group_name      = azurerm_resource_group.app_rg.name
   location                 = azurerm_resource_group.app_rg.location
-  account_tier               = "Standard"
+  account_tier             = "Standard"
   account_replication_type = "LRS"
-  min_tls_version           = "TLS1_2"
+  min_tls_version          = "TLS1_2"
 }
 
 # Declare the storage container in tf-app (if necessary)

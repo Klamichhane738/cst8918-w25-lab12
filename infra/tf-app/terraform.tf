@@ -7,11 +7,11 @@ terraform {
     storage_account_name = "lami0053githubactions" # Same as the backend created
     container_name       = "tfstate"
     key                  = "prod.app.tfstate"
-    use_oidc             = true  # Enable OIDC for backend authentication
+    use_oidc             = true # Enable OIDC for backend authentication
   }
 }
 
 provider "azurerm" {
   features {}
-  use_oidc = true  # Enable OIDC for Azure provider authentication
+  use_oidc = true # Enable OIDC for Azure provider authentication
 }
