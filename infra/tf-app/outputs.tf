@@ -5,7 +5,7 @@ output "backend_storage_account_name" {
 
 output "backend_container_name" {
   value       = azurerm_storage_container.backend.name
-  description = "The name of the backend storage container."
+  description = "The name of the backend storage containers."
 }
 
 output "storage_account_name" {
