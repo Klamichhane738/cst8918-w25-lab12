@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "app_rg" {
   location = "East US"
 }
 
-# Declare the storage account in tf-app (if necessary)
+# Declare the storage account in tf-app
 resource "azurerm_storage_account" "app_storage" {
   name                     = "lami0053appstorage"
   resource_group_name      = azurerm_resource_group.app_rg.name
@@ -25,17 +25,17 @@ resource "azurerm_storage_account" "app_storage" {
   min_tls_version          = "TLS1_2"
 }
 
-# Declare the storage container in tf-app (if necessary)
+# Declare the storage container in tf-app
 resource "azurerm_storage_container" "app_container" {
   name                  = "tfstate"
   storage_account_name  = azurerm_storage_account.app_storage.name
   container_access_type = "private"
 }
 
-# Use the remote state output in your resources (example)
+# Use the remote state output in your resources
 resource "azurerm_storage_account" "remote_storage" {
-  name                     = data.terraform_remote_state.backend.outputs.backend_storage_account_name
-  resource_group_name      = "some-resource-group"
+  name                     = data.terraform_remote_state.backend.outputs.storage_account_name
+  resource_group_name      = "some-resource-group"  # Replace with your actual resource group
   location                 = "East US"
   account_tier             = "Standard"
   account_replication_type = "LRS"
@@ -43,7 +43,7 @@ resource "azurerm_storage_account" "remote_storage" {
 }
 
 resource "azurerm_storage_container" "remote_container" {
-  name                  = data.terraform_remote_state.backend.outputs.backend_container_name
+  name                  = data.terraform_remote_state.backend.outputs.container_name
   storage_account_name  = azurerm_storage_account.remote_storage.name
   container_access_type = "private"
 }
