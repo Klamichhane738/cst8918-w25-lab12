@@ -1,14 +1,3 @@
-# Reference the outputs from tf-backend using terraform_remote_state
-data "terraform_remote_state" "backend" {
-  backend = "azurerm"
-  config = {
-    resource_group_name  = "lami0053-githubactions-rg"
-    storage_account_name = "lami0053githubactions"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
-}
-
 # Create a Resource Group for testing in tf-app
 resource "azurerm_resource_group" "app_rg" {
   name     = "lami0053-a12-rg"
@@ -32,18 +21,16 @@ resource "azurerm_storage_container" "app_container" {
   container_access_type = "private"
 }
 
-# Use the remote state output in your resources
-resource "azurerm_storage_account" "remote_storage" {
-  name                     = data.terraform_remote_state.backend.outputs.storage_account_name
-  resource_group_name      = "lami0053-githubactions-rg" # Replace with your actual resource group
-  location                 = "East US"
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  min_tls_version          = "TLS1_2"
+# Fetch remote state data
+data "terraform_remote_state" "backend" {
+  backend = "azurerm"
+
+  config = {
+    resource_group_name  = "lami0053-githubactions-rg"
+    storage_account_name = "lami0053githubactions"
+    container_name       = "tfstate"
+    key                  = "prod.app.tfstate"
+    use_oidc             = true
+  }
 }
 
-resource "azurerm_storage_container" "remote_container" {
-  name                  = data.terraform_remote_state.backend.outputs.container_name
-  storage_account_name  = azurerm_storage_account.remote_storage.name
-  container_access_type = "private"
-}

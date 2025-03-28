@@ -1,4 +1,3 @@
-# Define the Terraform block
 terraform {
   required_version = "~> 1.5"
 
@@ -22,4 +21,5 @@ terraform {
 # Configure the Azure provider
 provider "azurerm" {
   features {}
+  
 }
