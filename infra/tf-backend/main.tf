@@ -26,14 +26,6 @@ resource "azurerm_storage_container" "container" {
   container_access_type = "private"
 }
 
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "lami0053-githubactions-rg"
-    storage_account_name = "lami0053githubactions"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
-}
 # Output the resource group name
 output "resource_group_name" {
   value = azurerm_resource_group.rg.name
